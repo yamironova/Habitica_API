@@ -22,4 +22,9 @@ public class JSONToOneTag {
         return jSONToOneTag.getData();
     }
 
+    public static Boolean getSuccess(JSONToOneTag jSONToOneTag) {
+        return jSONToOneTag.success;
+    }
+
+
 }

@@ -24,7 +24,7 @@ public class GetTagsTests {
         // main check
         Tag[] tagArrayNew = GetTags.getAll();
         System.out.println(tagArrayNew.length);
-        
+
         Tag firstTag = new Tag();
         firstTag.setId(tagArrayNew[0].getId());
         firstTag.setName(tagArrayNew[0].getName());

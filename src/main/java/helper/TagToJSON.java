@@ -9,7 +9,7 @@ public class TagToJSON {
 
         JSONObject issueData = new JSONObject();
 
-        issueData.put("name", tag);
+        issueData.put("name", tag.getName());
 
         return issueData.toString();
     }
