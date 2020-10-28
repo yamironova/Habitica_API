@@ -44,4 +44,21 @@ public class GetTags {
 
 
     }
+
+    // get one absent tag
+    public static Boolean getOneAbsent(String tagId) {
+
+        ValidatableResponse response = ValidRequests.get(PATH_TAG + "/" + tagId).
+                statusCode(404).
+                contentType(ContentType.JSON).
+                assertThat().
+                body(matchesJsonSchemaInClasspath("not-found.json"));
+
+        return  response.
+                extract().
+                body().
+                path("success");
+
+
+    }
 }
