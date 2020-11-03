@@ -1,5 +1,6 @@
 package models;
 import lombok.*;
+import lombok.extern.log4j.Log4j2;
 
 import static config.EnvConfig.*;
 
@@ -8,6 +9,7 @@ import static config.EnvConfig.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Log4j2
 
 public class Tag implements Comparable<Tag> {
     private String id;
