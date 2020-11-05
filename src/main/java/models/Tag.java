@@ -1,8 +1,7 @@
 package models;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
-
-import static config.EnvConfig.*;
+import org.apache.commons.lang.RandomStringUtils;
 
 @Data
 @ToString
@@ -22,6 +21,16 @@ public class Tag implements Comparable<Tag> {
         return this.
                 id.
                 compareTo(other.id);
+    }
+
+    public static Tag randomTag() {
+
+        return new Tag("id", RandomStringUtils.random(10, true, false));
+    }
+
+    public static Tag defaultTag() {
+
+        return new Tag("id", "tag_name");
     }
 
 }
