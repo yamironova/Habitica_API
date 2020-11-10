@@ -36,6 +36,7 @@ public class CollectionTest {
         System.out.println(tags.stream()
                 .filter(streamsPredicate).count());
 
+        tags.stream().map(x -> addName(x)).forEach(x -> System.out.println(x.getName()));
 
 
         tags1 = tags.stream()
@@ -45,8 +46,12 @@ public class CollectionTest {
         for(Tag o : tags) {
         System.out.println(o.getName());
             System.out.println(tags1.size());
-
         }
 
     }
+    public static Tag addName(Tag tag) {
+        tag.setName(tag.getName() + " from stream");
+        return tag;
+    }
+
 }
