@@ -1,20 +1,20 @@
 {
 	"info": {
-		"_postman_id": "65e2f879-9230-4d01-a338-32b3c90a5a1a",
-		"name": "Post tests",
+		"_postman_id": "b3d82291-d004-4eab-bc6a-cc217ea61b7e",
+		"name": "Task tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Post Tag",
+			"name": "Post Task",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.test(\"Tag name is \" + jsonData.data.name, function () {\r",
-							"    pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+							"pm.test(\"Task name is \" + jsonData.data.text, function () {\r",
+							"    pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
 							"    pm.response.to.have.status(201);\r",
 							"});\r",
 							"\r",
@@ -46,7 +46,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Posttag\"\r\n}",
+					"raw": "{\r\n    \"text\": \"Posttask\",\r\n    \"type\": \"todo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,30 +54,31 @@
 					}
 				},
 				"url": {
-					"raw": "{{path}}/api/v3/tags",
+					"raw": "{{path}}/api/v4/tasks/user",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
-						"v3",
-						"tags"
+						"v4",
+						"tasks",
+						"user"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Tags",
+			"name": "Get Tasks",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							" var jsonData = pm.response.json();\r",
-							"pm.test(\"find tag \" + jsonData.data[0].name, function () {\r",
+							"pm.test(\"found task: \" + jsonData.data[0].text  + \" . Type: \" + jsonData.data[0].type, function () {\r",
 							"\r",
-							"    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+							"    // pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
@@ -108,30 +109,87 @@
 					}
 				],
 				"url": {
-					"raw": "{{path}}/api/v3/tags",
+					"raw": "{{path}}/api/v4/tasks/user",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
-						"v3",
-						"tags"
+						"v4",
+						"tasks",
+						"user"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Tag",
+			"name": "Get Tasks list",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							" var jsonData = pm.response.json();\r",
-							"pm.test(\"find tag \" + jsonData.data.name, function () {\r",
 							"\r",
-							"    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+							"jsonData.data.forEach(h => \r",
+							"{console.log(h)\r",
+							"    pm.test(\"found task \" + h.text + \" . Type: \" + h.type, function () {\r",
+							"    pm.expect(h.id).is.not.null;\r",
+							"    });\r",
+							"}\r",
+							");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Client",
+						"type": "text",
+						"value": "{{xClient}}"
+					},
+					{
+						"key": "x-api-user",
+						"type": "text",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "{{API-key}}"
+					}
+				],
+				"url": {
+					"raw": "{{path}}/api/v4/tasks/user",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"api",
+						"v4",
+						"tasks",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"pm.test(\"found task: \" + jsonData.data.text  + \" . Type: \" + jsonData.data.type, function () {\r",
+							"\r",
+							"    // pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
@@ -162,22 +220,22 @@
 					}
 				],
 				"url": {
-					"raw": "{{path}}/api/v3/tags/{{tag_Id}}",
+					"raw": "{{path}}/api/v4/tasks/{{task_Id}}",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
-						"v3",
-						"tags",
-						"{{tag_Id}}"
+						"v4",
+						"tasks",
+						"{{task_Id}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete Tag",
+			"name": "Delete Task",
 			"event": [
 				{
 					"listen": "test",
@@ -215,15 +273,15 @@
 					}
 				],
 				"url": {
-					"raw": "{{path}}/api/v3/tags/{{tag_Id}}",
+					"raw": "{{path}}/api/v4/tasks/{{task_Id}}",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
-						"v3",
-						"tags",
-						"{{tag_Id}}"
+						"v4",
+						"tasks",
+						"{{task_Id}}"
 					]
 				}
 			},
@@ -252,8 +310,8 @@
 	],
 	"variable": [
 		{
-			"key": "tag_Id",
-			"value": "49f2d02a-b7f1-4174-8b2e-b7dc1f79e003"
+			"key": "task_Id",
+			"value": "c69c0fa2-9982-4f42-b8d3-8779711fbb13"
 		}
 	]
 }
