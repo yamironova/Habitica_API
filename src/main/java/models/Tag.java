@@ -12,7 +12,7 @@ import org.apache.commons.lang.RandomStringUtils;
 
 public class Tag implements Comparable<Tag> {
     private String id;
-    private String name;
+    @NonNull private String name;
 
     // compare Tag object for array sorting
     @Override

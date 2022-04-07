@@ -48,7 +48,7 @@ public class ValidRequests {
     public static ValidatableResponse post(String urlPath, String requestBody) {
 
         ValidatableResponse response = given().spec(requestSpec).
-                header("Content-Type", ContentType.JSON).
+                contentType(ContentType.JSON).
                 body(requestBody).
                 when().
                 post(urlPath).

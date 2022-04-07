@@ -13,3 +13,4 @@ buildNumber.properties
 .idea/
 .allure/
 log/myApp.log
+*.log
