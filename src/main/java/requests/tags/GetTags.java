@@ -1,4 +1,4 @@
-package requests;
+package requests.tags;
 
 import api.ValidRequests;
 import helper.JSONAllTagsToArray;

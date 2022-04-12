@@ -13,16 +13,16 @@ import models.Tag;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import requests.DeleteTag;
-import requests.GetTags;
-import requests.PostTag;
+import requests.tags.DeleteTag;
+import requests.tags.GetTags;
+import requests.tags.PostTag;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static requests.GetTags.getOneAbsent;
+import static requests.tags.GetTags.getOneAbsent;
 
 public class StepDefinitions {
 

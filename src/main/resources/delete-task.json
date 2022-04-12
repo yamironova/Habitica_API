@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "success": true,
+      "data": {},
+      "notifications": [],
+      "userV": 1446,
+      "appVersion": "4.227.0"
+    }
+  ],
+  "required": [
+    "success",
+    "data",
+    "notifications",
+    "userV",
+    "appVersion"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The success schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The data schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "notifications": {
+      "$id": "#/properties/notifications",
+      "type": "array",
+      "title": "The notifications schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        []
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/notifications/items"
+      }
+    },
+    "userV": {
+      "$id": "#/properties/userV",
+      "type": "integer",
+      "title": "The userV schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        1446
+      ]
+    },
+    "appVersion": {
+      "$id": "#/properties/appVersion",
+      "type": "string",
+      "title": "The appVersion schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "4.227.0"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
