@@ -1,5 +1,6 @@
 package models;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Date;
@@ -9,8 +10,8 @@ import java.util.Date;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Builder
 @Log4j2
+@SuperBuilder
 
 public class Task implements Comparable<Task> {
     private String id;

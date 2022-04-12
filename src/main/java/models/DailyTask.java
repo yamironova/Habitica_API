@@ -1,5 +1,6 @@
 package models;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang.RandomStringUtils;
 
@@ -8,11 +9,10 @@ import java.util.Date;
 
 @Data
 @ToString
-@AllArgsConstructor
-@RequiredArgsConstructor
-@NoArgsConstructor
-@Builder
+@SuperBuilder
 @Log4j2
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class DailyTask extends Task {
     private String frequency;
@@ -23,7 +23,6 @@ public class DailyTask extends Task {
     private Integer[] weeksOfMonth;
     private Date startDate;
 
-    @Builder
     public DailyTask(String taskName) {
       super(taskName, "daily"); }
 

@@ -1,5 +1,6 @@
 package models;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang.RandomStringUtils;
 import java.util.Date;
@@ -7,16 +8,13 @@ import java.util.Date;
 
 @Data
 @ToString
-@AllArgsConstructor
-@RequiredArgsConstructor
-@NoArgsConstructor
-@Builder
 @Log4j2
+@SuperBuilder
 
 public class ToDoTask extends Task {
     private Date date ;
 
-    @Builder
+
     public ToDoTask(String taskName) {
       super(taskName, "todo");
     }
