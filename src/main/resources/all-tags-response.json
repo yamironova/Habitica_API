@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://example.com/schemas/tags.json",
   "type": "object",
   "title": "The tags schema",
@@ -32,7 +32,7 @@
   ],
   "properties": {
     "success": {
-      "$id": "#/properties/success",
+      "$id": "/properties/success",
       "type": "boolean",
       "default": false,
       "examples": [
@@ -40,7 +40,7 @@
       ]
     },
     "data": {
-      "$id": "#/properties/data",
+      "$id": "/properties/data",
       "type": "array",
       "default": [],
       "examples": [
@@ -56,45 +56,11 @@
         ]
       ],
       "additionalItems": true,
-      "items": {
-        "$id": "#/properties/data/tag",
-        "type": "object",
-        "title": "The one tag schema",
-        "description": "one tag schema",
-        "default": {},
-        "examples": [
-          {
-            "name": "Работа",
-            "id": "d559920f-9338-4b8b-aca2-8ae9b7d66bed"
-          }
-        ],
-        "required": [
-          "name",
-          "id"
-        ],
-        "properties": {
-          "name": {
-            "$id": "#/properties/data/tag/properties/name",
-            "type": "string",
-            "default": "",
-            "examples": [
-              "Работа"
-            ]
-          },
-          "id": {
-            "$id": "#/properties/data/tag/properties/id",
-            "type": "string",
-            "default": "",
-            "examples": [
-              "d559920f-9338-4b8b-aca2-8ae9b7d66bed"
-            ]
-          }
-        },
-        "additionalProperties": false
+      "items": {"$ref": "#/definitions/tag"
       }
     },
     "notifications": {
-      "$id": "#/properties/notifications",
+      "$id": "/properties/notifications",
       "type": "array",
       "default": [],
       "examples": [
@@ -102,11 +68,11 @@
       ],
       "additionalItems": true,
       "items": {
-        "$id": "#/properties/notifications/items"
+        "$id": "/properties/notifications/items"
       }
     },
     "userV": {
-      "$id": "#/properties/userV",
+      "$id": "/properties/userV",
       "type": "integer",
       "default": 0,
       "examples": [
@@ -114,7 +80,7 @@
       ]
     },
     "appVersion": {
-      "$id": "#/properties/appVersion",
+      "$id": "/properties/appVersion",
       "type": "string",
       "default": "",
       "examples": [
@@ -122,5 +88,44 @@
       ]
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "definitions": {
+    "tag":{
+      "$id": "/definitions/tag",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "title": "The one tag schema",
+      "description": "one tag schema",
+      "default": {},
+      "examples": [
+        {
+          "name": "Работа",
+          "id": "d559920f-9338-4b8b-aca2-8ae9b7d66bed"
+        }
+      ],
+      "required": [
+        "name",
+        "id"
+      ],
+      "properties": {
+        "name": {
+          "$id": "/properties/data/tag/properties/name",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "Работа"
+          ]
+        },
+        "id": {
+          "$id": "/properties/data/tag/properties/id",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "d559920f-9338-4b8b-aca2-8ae9b7d66bed"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }
