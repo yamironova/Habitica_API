@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://example.com/schemas/tag.json",
   "type": "object",
   "title": "The tag schema",
@@ -26,7 +26,7 @@
   ],
   "properties": {
     "success": {
-      "$id": "#/properties/success",
+      "$id": "/properties/success",
       "type": "boolean",
       "default": false,
       "examples": [
@@ -34,7 +34,7 @@
       ]
     },
     "data": {
-      "$id": "#/properties/data",
+      "$id": "/properties/data",
       "type": "object",
       "default": {},
       "examples": [
@@ -49,7 +49,7 @@
       ],
       "properties": {
         "name": {
-          "$id": "#/properties/data/properties/name",
+          "$id": "/properties/data/properties/name",
           "type": "string",
           "default": "",
           "examples": [
@@ -57,7 +57,7 @@
           ]
         },
         "id": {
-          "$id": "#/properties/data/properties/id",
+          "$id": "/properties/data/properties/id",
           "type": "string",
           "default": "",
           "examples": [
@@ -68,7 +68,7 @@
       "additionalProperties": true
     },
     "notifications": {
-      "$id": "#/properties/notifications",
+      "$id": "/properties/notifications",
       "type": "array",
       "default": [],
       "examples": [
@@ -76,11 +76,11 @@
       ],
       "additionalItems": true,
       "items": {
-        "$id": "#/properties/notifications/items"
+        "$id": "/properties/notifications/items"
       }
     },
     "userV": {
-      "$id": "#/properties/userV",
+      "$id": "/properties/userV",
       "type": "integer",
       "default": 0,
       "examples": [
@@ -88,7 +88,7 @@
       ]
     },
     "appVersion": {
-      "$id": "#/properties/appVersion",
+      "$id": "/properties/appVersion",
       "type": "string",
       "default": "",
       "examples": [
