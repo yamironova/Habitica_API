@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.Task;
 
-import static config.EnvConfig.PATH_TASK;
+import static config.EnvConfig.PATH_TASKS;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PostTask {
@@ -16,7 +16,7 @@ public class PostTask {
 
         String requestBody = TaskToJSON.generateJSONForTask(task);
 
-        ValidatableResponse response = ValidRequests.post(PATH_TASK, requestBody)
+        ValidatableResponse response = ValidRequests.post(PATH_TASKS, requestBody)
                 .statusCode(201)
                 .contentType(ContentType.JSON)
                 .assertThat()

@@ -7,6 +7,7 @@ import models.Task;
 import org.junit.jupiter.api.Test;
 //import requests.tasks.DeleteTask;
 //import requests.tasks.GetTask;
+import requests.tasks.DeleteTask;
 import requests.tasks.PostTask;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,8 +33,8 @@ public class SmokeTasksTest {
         //Tag checkTag = GetTags.getOne(myTag.getId());
 
         //assertEquals(myTag, checkTag);
-        // delete tag
-       //Boolean deletingSuccess = DeleteTag.deleteTag(myTag.getId());
+        // delete task
+       Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
 
         //check
         //tagArrayNew = GetTags.getAll();

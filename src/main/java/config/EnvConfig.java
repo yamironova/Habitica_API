@@ -7,5 +7,6 @@ public class EnvConfig {
     public static final String X_CLIENT = "72cff60d-3873-4c29-bb66-09558ddafe92-HabiticaJavaTest";
     public static final String USER_ID = "72cff60d-3873-4c29-bb66-09558ddafe92";
     public static final String API_KEY = "53917995-9fd9-4783-9fe1-c149ec74e80a";
-    public static final String PATH_TASK = "/api/v4/tasks/user";
+    public static final String PATH_TASKS = "/api/v4/tasks/user";
+    public static final String PATH_TASK = "/api/v4/tasks";
 }
