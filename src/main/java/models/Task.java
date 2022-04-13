@@ -3,7 +3,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 @Data
 @ToString
@@ -17,13 +18,25 @@ public class Task implements Comparable<Task> {
     private String id;
     @NonNull private String text;
     @NonNull private String type;
-    private String[] tags;
+    private Tag[] tags;
     private String alias;
-    private checklist[]  String;
+    private Checklist[] checklist;
     private Boolean collapseChecklist;
     private String notes;
     private Number priority;
     private String[] reminders;
+    // for responce
+    private Challenge challenge;
+    private Group group;
+    private Boolean completed;
+    private Number value;
+    private String attribute;
+    private Boolean byHabitica;
+    private String _id;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+    private String userId;
+
 
     // compare Tag object for array sorting
     @Override
