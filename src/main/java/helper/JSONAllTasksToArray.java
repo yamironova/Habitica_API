@@ -1,8 +1,10 @@
 package helper;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.ResponseBodyExtractionOptions;
 import lombok.*;
 import models.Tag;
 import models.Task;
+import java.util.LinkedHashMap;
 import api.ValidRequests;
 import helper.JSONAllTasksToArray;
 import helper.JSONToOneTask;
@@ -26,26 +28,43 @@ public class JSONAllTasksToArray {
    // private Integer userV;
    // private String appVersion;
 
-    public static ArrayList<Task> getTaskIdNameTypeArray(ResponseBodyExtractionOptions responseBody) {
+    public static ArrayList<Task> getTaskIdNameTypeArray(JsonPath jsonPath) {
         ArrayList<Task> tasks = new ArrayList<Task>();
-       // tasks.stream().map(x -> addName(x)).forEach(x -> System.out.println(x.getName()));
-      //  responseBody.jsonPath().getString("data[i].id");
-        int size = responseBody.jsonPath().getList("data").size();
-        for (int i = 0; i< size; i++) {
 
-            tasks.add(addShortTask(responseBody.jsonPath().getString("data["+ i +"].id"),
-                    responseBody.jsonPath().getString("data["+ i + "].text"),
-                    responseBody.jsonPath().getString("data[" + i +"].type")));
-            System.out.println(tasks.get(i).getText());
-        }
+       // Without COLLECTION
+    //    int size = jsonPath.getList("data").size();
+    //    for (int i = 0; i< size; i++) {
+     //       tasks.add(addShortTask(jsonPath, i));
+     //       System.out.println(jsonPath.getList("data").get(i) );
+    //        System.out.println("new");
+    //    }
+
+        // WITH COLLECTION
+        jsonPath.getList("data").stream().forEach(x -> tasks.add(addReqTask((LinkedHashMap) x)));
+    //    jsonPath.getList("data").stream().forEach(x -> System.out.println(getId((LinkedHashMap) x)));
 
         return tasks;
     }
-    public static Task addShortTask(String id, String text, String type) {
+
+    public static Task addReqTask (LinkedHashMap linkedHashMap) {
+        return  new Task(linkedHashMap.get("id").toString(),
+                linkedHashMap.get("text").toString(),
+                linkedHashMap.get("type").toString());
+    }
+
+    public static Task addShortTask(JsonPath jsonPath, Integer i) {
        // possible option
         // Task task = new Task(id,text,type);
       //  task.setId(id);
 
-        return new Task(id,text,type);
+        return new Task(jsonPath.getString("data["+ i +"].id"),
+                jsonPath.getString("data["+ i + "].text"),
+                jsonPath.getString("data[" + i +"].type"));
     }
+
+    public static String getId (LinkedHashMap linkedHashMap) {
+        return linkedHashMap.get("id").toString();
+    }
+
+
 }

@@ -26,7 +26,7 @@ public class GetTasks {
 
         return  JSONAllTasksToArray.getTaskIdNameTypeArray(response
                 .extract()
-                .body());
+                .body().jsonPath());
 
 
     }
