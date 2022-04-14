@@ -32,9 +32,10 @@ public class JSONAllTasksToArray {
       //  responseBody.jsonPath().getString("data[i].id");
         int size = responseBody.jsonPath().getList("data").size();
         for (int i = 0; i< size; i++) {
-            tasks.add(addShortTask(responseBody.jsonPath().getString("data[i].id"),
-                    responseBody.jsonPath().getString("data[i].text"),
-                    responseBody.jsonPath().getString("data[i].type")));
+
+            tasks.add(addShortTask(responseBody.jsonPath().getString("data["+ i +"].id"),
+                    responseBody.jsonPath().getString("data["+ i + "].text"),
+                    responseBody.jsonPath().getString("data[" + i +"].type")));
             System.out.println(tasks.get(i).getText());
         }
 
