@@ -4,6 +4,7 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 @Data
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @SuperBuilder
 
 public class Task implements Comparable<Task> {
-    private String id;
+    @NonNull private String id;
     @NonNull private String text;
     @NonNull private String type;
     private Tag[] tags;
@@ -25,17 +26,35 @@ public class Task implements Comparable<Task> {
     private String notes;
     private Number priority;
     private String[] reminders;
-    // for responce
+    // for response
     private Challenge challenge;
     private Group group;
     private Boolean completed;
-    private Number value;
     private String attribute;
     private Boolean byHabitica;
     private String _id;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private String userId;
+    // from Todo task
+    private Date date;
+    // from Daily task
+    private String frequency;
+    private String repeat;
+    private Number everyX;
+    private Number streak;
+    private Number[] daysOfMonth;
+    private Number[] weeksOfMonth;
+    private Date startDate;
+    // from Habit task
+    private Boolean up;
+    private Boolean down;
+    private Integer counterUp;
+    private Integer counterDown;
+    private HistoryItem[] history;
+    // from Reward task
+    private Number value;
+
 
 
     // compare Tag object for array sorting
@@ -50,7 +69,7 @@ public class Task implements Comparable<Task> {
 
     public static Task defaultTask() {
 
-        return new Task("text", "todo");
+        return new Task("id","text", "todo");
     }
 
 }

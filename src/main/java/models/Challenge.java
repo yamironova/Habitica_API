@@ -6,14 +6,13 @@ import lombok.extern.log4j.Log4j2;
 @Data
 @ToString
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Log4j2
 @SuperBuilder
 
 public class Challenge implements Comparable<Challenge> {
-    @NonNull private String id;
-    @NonNull private String name;
+    private String id;
+    private String name;
     private String group;
     private String shortName;
     private String summary;
@@ -30,9 +29,10 @@ public class Challenge implements Comparable<Challenge> {
     }
 
 
-    public static Challenge defaultTask() {
-
-        return new Challenge("text", "New Chall");
+    public static Challenge getDefaultChallenge() {
+        Challenge challenge = new Challenge();
+        challenge.name = "ChallengeName";
+        return challenge;
     }
 
 }

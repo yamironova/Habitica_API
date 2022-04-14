@@ -15,4 +15,9 @@ public class Approval {
     @NonNull private Boolean required;
     @NonNull private Boolean approved;
              private Boolean requested;
+
+    public static Approval defaultApproval() {
+
+        return new Approval(false,false,false);
+    }
 }

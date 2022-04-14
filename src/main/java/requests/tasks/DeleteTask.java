@@ -12,11 +12,11 @@ public class DeleteTask {
     // simple valid deleting one task
     public static Boolean deleteTask(String taskId) {
 
-        ValidatableResponse response = ValidRequests.delete(PATH_TASK + "/" + taskId).
-                statusCode(200).
-                contentType(ContentType.JSON).
-                assertThat().
-                body(matchesJsonSchemaInClasspath("delete-task.json"));
+        ValidatableResponse response = ValidRequests.delete(PATH_TASK + "/" + taskId)
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("delete-task.json"));
 
         return  response.
                 extract().

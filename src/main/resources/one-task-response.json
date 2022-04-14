@@ -23,8 +23,6 @@
       "default": {},
       "required": [
         "group",
-        "completed",
-        "collapseChecklist",
         "type",
         "notes",
         "value",
@@ -114,11 +112,11 @@
           "items": {}
         },
         "value": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "priority": {
-          "type": "integer",
+          "type": "number",
           "default": 0
         },
         "attribute": {

@@ -19,12 +19,12 @@ public class DailyTask extends Task {
     private String repeat;
     private Number everyX;
     private Number streak;
-    private Integer[] daysOfMonth;
-    private Integer[] weeksOfMonth;
+    private Number[] daysOfMonth;
+    private Number[] weeksOfMonth;
     private Date startDate;
 
     public DailyTask(String taskName) {
-      super(taskName, "daily"); }
+      super("iD",taskName, "daily"); }
 
 
     public static DailyTask randomDailyTask() {

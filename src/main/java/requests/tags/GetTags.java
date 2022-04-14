@@ -15,15 +15,16 @@ public class GetTags {
     // get all tags
     public static Tag[] getAll() {
 
-        ValidatableResponse response = ValidRequests.get(PATH_TAG).
-                statusCode(200).
-                contentType(ContentType.JSON).
-                assertThat().
-                body(matchesJsonSchemaInClasspath("all-tags-response.json"));
+        ValidatableResponse response = ValidRequests.get(PATH_TAG)
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("all-tags-response.json"));
 
-        return  JSONAllTagsToArray.getTagArray(response.
-                extract().
-                body().as(JSONAllTagsToArray.class));
+        return  JSONAllTagsToArray.getTagArray(response
+                .extract()
+                .body()
+                .as(JSONAllTagsToArray.class));
 
 
     }
@@ -31,16 +32,16 @@ public class GetTags {
     // get one tag
     public static Tag getOne(String tagId) {
 
-        ValidatableResponse response = ValidRequests.get(PATH_TAG + "/" + tagId).
-                statusCode(200).
-                contentType(ContentType.JSON).
-                assertThat().
-                body(matchesJsonSchemaInClasspath("one-tag-response.json"));
+        ValidatableResponse response = ValidRequests.get(PATH_TAG + "/" + tagId)
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("one-tag-response.json"));
 
-        return  JSONToOneTag.getTag(response.
-                extract().
-                body().
-                as(JSONToOneTag.class));
+        return  JSONToOneTag.getTag(response
+                .extract()
+                .body()
+                .as(JSONToOneTag.class));
 
 
     }
@@ -48,16 +49,16 @@ public class GetTags {
     // get one absent tag
     public static Boolean getOneAbsent(String tagId) {
 
-        ValidatableResponse response = ValidRequests.get(PATH_TAG + "/" + tagId).
-                statusCode(404).
-                contentType(ContentType.JSON).
-                assertThat().
-                body(matchesJsonSchemaInClasspath("not-found.json"));
+        ValidatableResponse response = ValidRequests.get(PATH_TAG + "/" + tagId)
+                .statusCode(404)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("not-found.json"));
 
-        return  response.
-                extract().
-                body().
-                path("success");
+        return  response
+                .extract()
+                .body()
+                .path("success");
 
 
     }

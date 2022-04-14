@@ -11,12 +11,16 @@ import org.apache.commons.lang.RandomStringUtils;
 @SuperBuilder
 
 public class HabitTask extends Task {
+
     private Boolean up;
     private Boolean down;
+    private Integer counterUp;
+    private Integer counterDown;
+    private HistoryItem[] history;
 
 
     public HabitTask(String taskName) {
-      super(taskName, "habit");
+      super("iD",taskName, "habit");
       this.down = true;
       this.up = true;
     }

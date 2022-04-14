@@ -14,10 +14,10 @@ import lombok.extern.log4j.Log4j2;
 public class Group implements Comparable<Group> {
 
     private String id;
-    @NonNull private String name;
-    @NonNull private String type;
+    private String name;
+    private String type;
     private String privacy;
-    private Approval approval;
+    @NonNull private Approval approval;
     private String[] assignedUsers;
     private String sharedCompletion;
 
@@ -33,9 +33,9 @@ public class Group implements Comparable<Group> {
     }
 
 
-    public static Group defaultTask() {
+    public static Group defaultGroup() {
 
-        return new Group("New Group", "guild");
+        return new Group(Approval.defaultApproval());
     }
 
 }

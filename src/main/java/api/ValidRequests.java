@@ -32,11 +32,11 @@ public class ValidRequests {
     // simple valid get request
     public static ValidatableResponse get(String urlPath) {
 
-        ValidatableResponse response = given().
-                spec(requestSpec).
-                when().
-                get(urlPath).
-                then();
+        ValidatableResponse response = given()
+                .spec(requestSpec)
+                .when()
+                .get(urlPath)
+                .then();
 
         log.info( "GET request to " + urlPath +
                 " has code response " + response.extract().statusCode() +
@@ -47,12 +47,12 @@ public class ValidRequests {
     // simple valid post request
     public static ValidatableResponse post(String urlPath, String requestBody) {
 
-        ValidatableResponse response = given().spec(requestSpec).
-                contentType(ContentType.JSON).
-                body(requestBody).
-                when().
-                post(urlPath).
-                then();
+        ValidatableResponse response = given().spec(requestSpec)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post(urlPath)
+                .then();
 
         log.info( "POST request with body " + requestBody +
                 " has code response " + response.extract().statusCode() +
@@ -64,11 +64,11 @@ public class ValidRequests {
     // simple valid delete request
     public static ValidatableResponse delete(String urlPath) {
 
-        ValidatableResponse response = given().
-                spec(requestSpec).
-                when().
-                delete(urlPath).
-                then();
+        ValidatableResponse response = given()
+                .spec(requestSpec)
+                .when()
+                .delete(urlPath)
+                .then();
 
         log.info( "DELETE request to " + urlPath +
                 " has code response " + response.extract().statusCode() +

@@ -3,12 +3,14 @@ package smoke;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import models.Challenge;
 import models.Task;
 import org.junit.jupiter.api.Test;
-//import requests.tasks.DeleteTask;
-//import requests.tasks.GetTask;
 import requests.tasks.DeleteTask;
+import requests.tasks.GetTasks;
 import requests.tasks.PostTask;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,26 +23,29 @@ public class SmokeTasksTest {
     public void smokeTest () {
 
         //create task
-        Task myTask = new Task("TEXT", "todo" );
+        Task myTask = new Task("Id","TEXT", "todo" );
         // post Task
         Task responseTask = PostTask.postOne(myTask);
         myTask.setId(responseTask.getId());
         System.out.println(myTask.getId());
-        //get all tags
-        //Tag[] tagArrayNew = GetTags.getAll();
-        //System.out.println(tagArrayNew.length);
-        //get my tag
-        //Tag checkTag = GetTags.getOne(myTag.getId());
 
-        //assertEquals(myTag, checkTag);
+        //get my task
+        Task checkTask = GetTasks.getOne(myTask.getId());
+
+        //get all tasks
+     //   ArrayList<Task> taskArrayNew = GetTasks.getAll();
+     //   System.out.println(taskArrayNew.size());
+
+
+        assertEquals(myTask.getText(), checkTask.getText());
         // delete task
-       Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+        Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
 
         //check
-        //tagArrayNew = GetTags.getAll();
-        //System.out.println(tagArrayNew.length);
+     //   taskArrayNew = GetTasks.getAll();
+     //   System.out.println(taskArrayNew.size());
 
-        //assertTrue(deletingSuccess);
+        assertTrue(deletingSuccess);
 
 
     }

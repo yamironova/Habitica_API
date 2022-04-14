@@ -23,9 +23,9 @@ public class PostTask {
                 .body(matchesJsonSchemaInClasspath("one-task-response.json"))
                 ;
 
-        return JSONToOneTask.getTask(response.
-                extract().
-                body().
-                as(JSONToOneTask.class));
+        return JSONToOneTask.getTask(response
+                .extract()
+                .body()
+                .as(JSONToOneTask.class));
     }
 }

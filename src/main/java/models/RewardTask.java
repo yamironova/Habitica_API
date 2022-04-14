@@ -17,7 +17,7 @@ public class RewardTask extends Task {
 
 
     public RewardTask(String taskName, Number value) {
-      super(taskName, "reward");
+      super("iD",taskName, "reward");
         this.value = value;
     }
 
