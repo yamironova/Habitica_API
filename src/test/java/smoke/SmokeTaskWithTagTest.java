@@ -3,9 +3,10 @@ package smoke;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import models.Challenge;
+import models.Tag;
 import models.Task;
 import org.junit.jupiter.api.Test;
+import requests.tags.GetTags;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
 import requests.tasks.PostTask;
@@ -15,37 +16,41 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SmokeTasksTest {
+public class SmokeTaskWithTagTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Description("'post-get all - get one - delete task")
+    @Description("'post-get all - get one - delete")
     public void smokeTest () {
 
         //create task
-        Task myTask = new Task("Id","TEXT", "todo" );
+        Task myTask = new Task("Id","task for tag", "todo" );
         // post Task
         Task responseTask = PostTask.postOne(myTask);
         myTask.setId(responseTask.getId());
         System.out.println(myTask.getId());
 
-        //get my task
+        //get all tags
+        Tag[] tagArrayNew = GetTags.getAll();
+        // add tag to reference task
+        String tagName = tagArrayNew[0].getName();
+        System.out.println(tagName);
+        Tag myTag = new Tag(tagArrayNew[0].getId(), tagArrayNew[0].getName() );
+        Tag[] myTagsArray = new Tag[1];
+        myTagsArray[0] = myTag;
+        myTask.setTags(myTagsArray);
+
+        //add tag to system task
+        responseTask = PostTask.postTagToOne(myTask, myTag);
+        System.out.println(responseTask);
+
+        //get my task and tags
         Task checkTask = GetTasks.getOne(myTask.getId());
 
-        //get all tasks
-        ArrayList<Task> taskArrayNew = GetTasks.getAll();
-        int n = taskArrayNew.size();
-        System.out.println(n);
-        System.out.println(taskArrayNew.get(n-1).getId());
-
-
-        assertEquals(myTask.getText(), checkTask.getText());
+        //check
+        assertEquals(myTask.getTags()[0].getId(), checkTask.getTags()[0].getId());
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
-
-        //check
-        taskArrayNew = GetTasks.getAll();
-        System.out.println(taskArrayNew.size());
 
         assertTrue(deletingSuccess);
 

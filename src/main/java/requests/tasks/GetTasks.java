@@ -8,6 +8,8 @@ import io.restassured.response.ValidatableResponse;
 import models.Task;
 
 import java.util.ArrayList;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 import static config.EnvConfig.PATH_TASKS;
 import static config.EnvConfig.PATH_TASK;
@@ -38,7 +40,10 @@ public class GetTasks {
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("one-task-response.json"));
+                .body(matchesJsonSchemaInClasspath("one-task-response.json"))
+     //           .body("data.id", equalTo(4))     // possible quick check
+                .body("data.id", notNullValue())
+                ;
 
         return  JSONToOneTask.getTask(response
                 .extract()
