@@ -5,13 +5,9 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import models.Tag;
 import org.junit.jupiter.api.Test;
-import requests.GetTags;
-
-import java.util.ArrayList;
-import java.util.List;
+import requests.tags.GetTags;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static requests.GetTags.getOne;
 
 public class GetTagsTests {
 

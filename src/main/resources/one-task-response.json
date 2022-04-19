@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/task-responce1.json",
+  "type": "object",
+  "title": "The task schema",
+  "description": "task schema",
+  "default": {},
+  "required": [
+    "success",
+    "data",
+    "userV",
+    "appVersion"
+  ],
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "default": false
+    },
+    "data": {
+      "type": "object",
+      "title": "The task schema",
+      "description": "task itself",
+      "default": {},
+      "required": [
+        "group",
+        "type",
+        "notes",
+        "value",
+        "priority",
+        "attribute",
+        "byHabitica",
+        "text",
+        "_id",
+        "createdAt",
+        "updatedAt",
+        "userId",
+        "id"
+      ],
+      "properties": {
+        "group": {
+          "type": "object",
+          "title": "The group schema",
+          "description": "The group schema",
+          "default": {},
+          "required": [
+            "approval",
+            "sharedCompletion"
+          ],
+          "properties": {
+            "approval": {
+              "type": "object",
+              "default": {},
+              "required": [
+                "required",
+                "approved",
+                "requested"
+              ],
+              "properties": {
+                "required": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "approved": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "requested": {
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "additionalProperties": true
+            },
+            "assignedUsers": {
+              "type": "array",
+              "default": [],
+              "additionalItems": true,
+              "items": {}
+            },
+            "sharedCompletion": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "additionalProperties": true
+        },
+
+        "completed": {
+          "type": "boolean",
+          "default": false
+        },
+        "collapseChecklist": {
+          "type": "boolean",
+          "default": false
+        },
+        "type": {
+          "type": "string",
+          "title": "The type schema",
+          "description": "A task type",
+          "default": ""
+        },
+        "notes": {
+          "type": "string",
+          "default": ""
+        },
+        "tags": {
+          "type": "array",
+          "title": "The tags for task schema",
+          "description": "The tags for task schema",
+          "default": [],
+          "additionalItems": true,
+          "items": {}
+        },
+        "value": {
+          "type": "number",
+          "default": 0
+        },
+        "priority": {
+          "type": "number",
+          "default": 0
+        },
+        "attribute": {
+          "type": "string",
+          "default": ""
+        },
+        "byHabitica": {
+          "type": "boolean",
+          "default": false
+        },
+        "text": {
+          "type": "string",
+          "title": "Task name",
+          "description": "the task name",
+          "default": ""
+        },
+        "checklist": {
+          "type": "array",
+          "default": [],
+          "additionalItems": true,
+          "items": {}
+        },
+        "reminders": {
+          "type": "array",
+          "default": [],
+          "additionalItems": true,
+          "items": {}
+        },
+        "_id": {
+          "type": "string",
+          "default": ""
+        },
+        "createdAt": {
+          "type": "string",
+          "default": ""
+        },
+        "updatedAt": {
+          "type": "string",
+          "default": ""
+        },
+        "userId": {
+          "type": "string",
+          "default": ""
+        },
+        "id": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "additionalProperties": true
+    },
+    "notifications": {
+      "type": "array",
+      "default": [],
+      "additionalItems": true,
+      "items": {}
+    },
+    "userV": {
+      "type": "integer",
+      "default": 0
+    },
+    "appVersion": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,4 +1,4 @@
-package requests;
+package requests.tags;
 
 import api.ValidRequests;
 import helper.JSONToOneTag;
@@ -17,15 +17,15 @@ public class PostTag {
 
         String requestBody = TagToJSON.generateJSONForTag(tag);
 
-        ValidatableResponse response = ValidRequests.post(PATH_TAG, requestBody).
-                statusCode(201).
-                contentType(ContentType.JSON).
-                assertThat().
-                body(matchesJsonSchemaInClasspath("one-tag-response.json"));
+        ValidatableResponse response = ValidRequests.post(PATH_TAG, requestBody)
+                .statusCode(201)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("one-tag-response.json"));
 
-        return JSONToOneTag.getTag(response.
-                extract().
-                body().
-                as(JSONToOneTag.class));
+        return JSONToOneTag.getTag(response
+                .extract()
+                .body()
+                .as(JSONToOneTag.class));
     }
 }

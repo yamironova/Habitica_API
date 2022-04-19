@@ -1,5 +1,6 @@
 package models;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import static config.EnvConfig.*;
 
@@ -7,7 +8,7 @@ import static config.EnvConfig.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 
 public class User {
 

@@ -5,18 +5,18 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import models.Tag;
 import org.junit.jupiter.api.Test;
-import requests.DeleteTag;
-import requests.GetTags;
-import requests.PostTag;
+import requests.tags.DeleteTag;
+import requests.tags.GetTags;
+import requests.tags.PostTag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SmokeTest {
+public class SmokeTagsTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Description("'post-get all - get one - delete")
+    @Description("'post-get all - get one - delete tag")
     public void smokeTest () {
 
         //create tag
