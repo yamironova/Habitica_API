@@ -6,8 +6,11 @@ import static lombok.extern.flogger.Flogger.*;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.http.Cookie;
+import io.restassured.http.Cookies;
 
 import lombok.extern.flogger.Flogger;
 import org.apache.logging.log4j.LogManager;
@@ -32,16 +35,29 @@ public class ValidRequests {
     // simple valid get request
     public static ValidatableResponse get(String urlPath) {
 
-        ValidatableResponse response = given()
+        Response response = given()    // response
                 .spec(requestSpec)
                 .when()
                 .get(urlPath)
-                .then();
+                ;
+
+        // lets check cookies and session ID
+        System.out.println(response.getCookies());
+        String getSessionIdFromCookie = response.getCookies().get("connect:sess.sig") ;
+        String getSessionFromCookie = response.getCookies().get("connect:sess") ;
+        System.out.println(getSessionFromCookie + "  " + getSessionIdFromCookie);
+
+        // how we can use this session ID
+        //Response responseNew = given()
+        //        .cookies("connect:sess.sig", getSessionIdFromCookie, "connect:sess", getSessionFromCookie)
+        //        .when()
+        //        .get(urlPath);
+
 
         log.info( "GET request to " + urlPath +
-                " has code response " + response.extract().statusCode() +
-                " and response body " + response.extract().body().asString());
-        return response;
+                " has code response " + response.then().extract().statusCode() +
+                " and response body " + response.then().extract().body().asString());
+        return response.then() ;   // response.then() - ValidatableResponse
 
     }
     // simple valid post request
@@ -53,6 +69,7 @@ public class ValidRequests {
                 .when()
                 .post(urlPath)
                 .then();
+
 
         log.info( "POST request with body " + requestBody +
                 " has code response " + response.extract().statusCode() +
@@ -69,6 +86,8 @@ public class ValidRequests {
                 .when()
                 .delete(urlPath)
                 .then();
+
+
 
         log.info( "DELETE request to " + urlPath +
                 " has code response " + response.extract().statusCode() +
