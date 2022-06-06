@@ -1,4 +1,5 @@
 package helper;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 import models.Task;
 
@@ -12,7 +13,7 @@ public class JSONToOneTask {
 
     private Boolean success;
     private Task data;
-    private String[] notifications;
+    private JsonNode[] notifications;
     private Integer userV;
     private String appVersion;
 

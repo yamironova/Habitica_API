@@ -1,4 +1,5 @@
 package helper;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 import models.Tag;
 
@@ -14,7 +15,7 @@ public class JSONToOneTag {
 
     private Boolean success;
     private Tag data;
-    private String[] notifications;
+    private JsonNode[] notifications;
     private Integer userV;
     private String appVersion;
 

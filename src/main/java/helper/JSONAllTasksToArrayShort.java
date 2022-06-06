@@ -16,7 +16,7 @@ public class JSONAllTasksToArrayShort {
 
    // private Boolean success;
  private ArrayList<Task> data;
-   // private String[] notifications;
+   // private JsonNode[] notifications;
    // private Integer userV;
    // private String appVersion;
 
