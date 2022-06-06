@@ -1,10 +1,16 @@
 package models;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 
+
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 
 @Data
@@ -26,6 +32,7 @@ public class Task implements Comparable<Task> {
     private String notes;
     private Number priority;
     private String[] reminders;
+    //private Boolean isDue;
     // for response
     private Challenge challenge;
     private Group group;
@@ -40,9 +47,14 @@ public class Task implements Comparable<Task> {
     private Date date;
     // from Daily task
     private String frequency;
-    private String repeat;
+    //private DailyTask.DayOfWeekMark repeat;
     private Number everyX;
     private Number streak;
+//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ", locale = "en_GB", timezone = "Moscow")
+    //private List<JsonNode> nextDue;
+    //private Boolean yesterDaily;
+ //   @JsonProperty("history")
+  //  private DailyTask.HistoryMark[] history1;
     private Number[] daysOfMonth;
     private Number[] weeksOfMonth;
     private Date startDate;
@@ -51,6 +63,7 @@ public class Task implements Comparable<Task> {
     private Boolean down;
     private Integer counterUp;
     private Integer counterDown;
+    @JsonProperty("history")
     private HistoryItem[] history;
     // from Reward task
     private Number value;
@@ -71,5 +84,6 @@ public class Task implements Comparable<Task> {
 
         return new Task("id","text", "todo");
     }
+
 
 }

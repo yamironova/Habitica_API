@@ -4,7 +4,10 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang.RandomStringUtils;
 
+import java.sql.Timestamp;
 
+
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
 @Log4j2

@@ -7,6 +7,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import java.util.Random;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
 @Log4j2

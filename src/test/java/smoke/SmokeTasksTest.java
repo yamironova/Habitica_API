@@ -20,7 +20,7 @@ public class SmokeTasksTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("'post-get all - get one - delete task")
-    public void smokeTest () {
+    public void smokeTaskTest() {
 
         //create task
         Task myTask = new Task("Id","TEXT", "todo" );
@@ -33,10 +33,10 @@ public class SmokeTasksTest {
         Task checkTask = GetTasks.getOne(myTask.getId());
 
         //get all tasks
-        ArrayList<Task> taskArrayNew = GetTasks.getAll();
-        int n = taskArrayNew.size();
-        System.out.println(n);
-        System.out.println(taskArrayNew.get(n-1).getId());
+        //ArrayList<Task> taskArrayNew = GetTasks.getAll();
+        //int n = taskArrayNew.size();
+        //System.out.println(n);
+        //System.out.println(taskArrayNew.get(n-1).getId());
 
 
         assertEquals(myTask.getText(), checkTask.getText());
@@ -44,8 +44,8 @@ public class SmokeTasksTest {
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
 
         //check
-        taskArrayNew = GetTasks.getAll();
-        System.out.println(taskArrayNew.size());
+        //taskArrayNew = GetTasks.getAll();
+        //System.out.println(taskArrayNew.size());
 
         assertTrue(deletingSuccess);
 

@@ -38,4 +38,22 @@ public class Group implements Comparable<Group> {
         return new Group(Approval.defaultApproval());
     }
 
+    @Data
+    @ToString
+    @AllArgsConstructor
+    @RequiredArgsConstructor
+    @NoArgsConstructor
+    @Log4j2
+    @SuperBuilder
+
+    public static class Approval {
+        @NonNull private Boolean required;
+        @NonNull private Boolean approved;
+                 private Boolean requested;
+
+        public static Approval defaultApproval() {
+
+            return new Approval(false,false,false);
+        }
+    }
 }

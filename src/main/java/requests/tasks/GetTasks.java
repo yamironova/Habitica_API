@@ -1,14 +1,16 @@
 package requests.tasks;
 
 import api.ValidRequests;
+import helper.JSONAllTagsToArray;
 import helper.JSONAllTasksToArray;
+import helper.JSONAllTasksToArrayShort;
 import helper.JSONToOneTask;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.Task;
 
 import java.util.ArrayList;
-import static org.hamcrest.Matchers.equalTo;
+
 import static org.hamcrest.Matchers.notNullValue;
 
 import static config.EnvConfig.PATH_TASKS;
@@ -18,7 +20,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 public class GetTasks {
 
     // get all tasks
-    public static ArrayList<Task> getAll() {
+
+    public static Task[] getAll() {
+    //public static ArrayList<Task> getAll() {
 
         ValidatableResponse response = ValidRequests.get(PATH_TASKS)
                 .statusCode(200)
@@ -26,9 +30,14 @@ public class GetTasks {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("all-tasks-response.json"));
 
-        return  JSONAllTasksToArray.getTaskIdNameTypeArray(response
+        //return  JSONAllTasksToArrayShort.getTaskIdNameTypeArray(response
+        //        .extract()
+        //        .body().jsonPath());
+
+        return  JSONAllTasksToArray.getTaskArray(response
                 .extract()
-                .body().jsonPath());
+                .body()
+                .as(JSONAllTasksToArray.class));
 
 
     }

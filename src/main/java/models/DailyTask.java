@@ -1,27 +1,41 @@
 package models;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang.RandomStringUtils;
 
+
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-@SuperBuilder
-@Log4j2
 @AllArgsConstructor
 @NoArgsConstructor
+@Log4j2
+@SuperBuilder
 
 public class DailyTask extends Task {
     private String frequency;
-    private String repeat;
+    private DayOfWeekMark repeat;
     private Number everyX;
     private Number streak;
+ //   @JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
+ @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
+    private List<JsonNode> nextDue;
+    private Boolean yesterDaily;
+    private HistoryMark[] history1;
+
     private Number[] daysOfMonth;
     private Number[] weeksOfMonth;
     private Date startDate;
+
 
     public DailyTask(String taskName) {
       super("iD",taskName, "daily"); }
@@ -37,4 +51,34 @@ public class DailyTask extends Task {
         return new DailyTask("DailyTask_name");
     }
 
+    @Data
+    @ToString
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Log4j2
+    @SuperBuilder
+
+    public static class DayOfWeekMark {
+        private Boolean m;
+        private Boolean t;
+        private Boolean w;
+        private Boolean th;
+        private Boolean f;
+        private Boolean s;
+        private Boolean su;
+    }
+    @Data
+    @ToString
+    @AllArgsConstructor
+    @RequiredArgsConstructor
+    @NoArgsConstructor
+    @Log4j2
+    @SuperBuilder
+    public static class HistoryMark {
+        @NonNull Timestamp date;
+        Float value;
+        Boolean isDue;
+        Boolean completed;
+
+    }
 }

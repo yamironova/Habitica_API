@@ -17,7 +17,7 @@ public class SmokeTagsTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("'post-get all - get one - delete tag")
-    public void smokeTest () {
+    public void smokeTagsTest() {
 
         //create tag
         Tag myTag = new Tag("TEXT", "JavaTag" );
