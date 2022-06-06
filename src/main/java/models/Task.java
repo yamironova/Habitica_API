@@ -32,7 +32,7 @@ public class Task implements Comparable<Task> {
     private String notes;
     private Number priority;
     private String[] reminders;
-    //private Boolean isDue;
+    private Boolean isDue;
     // for response
     private Challenge challenge;
     private Group group;
@@ -47,12 +47,12 @@ public class Task implements Comparable<Task> {
     private Date date;
     // from Daily task
     private String frequency;
-    //private DailyTask.DayOfWeekMark repeat;
+    private DailyTask.DayOfWeekMark repeat;
     private Number everyX;
     private Number streak;
 //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ", locale = "en_GB", timezone = "Moscow")
-    //private List<JsonNode> nextDue;
-    //private Boolean yesterDaily;
+    private JsonNode[] nextDue;
+    private Boolean yesterDaily;
  //   @JsonProperty("history")
   //  private DailyTask.HistoryMark[] history1;
     private Number[] daysOfMonth;

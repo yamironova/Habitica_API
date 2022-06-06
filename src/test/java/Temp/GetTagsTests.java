@@ -1,4 +1,4 @@
-package requestTests;
+package Temp;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;

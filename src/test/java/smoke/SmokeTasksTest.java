@@ -33,6 +33,9 @@ public class SmokeTasksTest {
         Task checkTask = GetTasks.getOne(myTask.getId());
 
         //get all tasks
+        Task[] taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
+        System.out.println(taskArrayNew[taskArrayNew.length-1].getId());
         //ArrayList<Task> taskArrayNew = GetTasks.getAll();
         //int n = taskArrayNew.size();
         //System.out.println(n);
@@ -44,8 +47,8 @@ public class SmokeTasksTest {
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
 
         //check
-        //taskArrayNew = GetTasks.getAll();
-        //System.out.println(taskArrayNew.size());
+        taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
 
         assertTrue(deletingSuccess);
 

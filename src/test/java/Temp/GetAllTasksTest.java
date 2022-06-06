@@ -38,12 +38,12 @@ public class GetAllTasksTest {
         //System.out.println(taskArrayNew.get(n-1).getId());
 
         //get my task
-        String taskId = "bfe94488-b3cb-4122-8bf6-8e083b62b5c4";
+        String taskId = "31692448-8c4c-4283-b54d-dfb532aac155";
         Task checkTask = GetTasks.getOne(taskId);
         System.out.println(checkTask);
         //get all tags
-       // Task[] taskArrayNew = GetTasks.getAll();
-        //System.out.println(taskArrayNew.length);
+        Task[] taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
 
 /*        ValidatableResponse response = ValidRequests.get(PATH_TASK + "/" + taskId)
                 .statusCode(200)

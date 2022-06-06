@@ -16,7 +16,9 @@ import java.sql.Timestamp;
 
 public class HistoryItem {
     @NonNull private Timestamp date;
-    private Number value;
+    @NonNull private Number value;
     private Integer scoredUp;
     private Integer scoredDown;
+    private Boolean isDue;
+    private Boolean completed;
 }

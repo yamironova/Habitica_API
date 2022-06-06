@@ -28,7 +28,7 @@ public class DailyTask extends Task {
     private Number streak;
  //   @JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
-    private List<JsonNode> nextDue;
+    private JsonNode[] nextDue;
     private Boolean yesterDaily;
     private HistoryMark[] history1;
 
@@ -75,10 +75,10 @@ public class DailyTask extends Task {
     @Log4j2
     @SuperBuilder
     public static class HistoryMark {
-        @NonNull Timestamp date;
-        Float value;
-        Boolean isDue;
-        Boolean completed;
+        @NonNull private Timestamp date;
+        private Float value;
+        private Boolean isDue;
+        private Boolean completed;
 
     }
 }
