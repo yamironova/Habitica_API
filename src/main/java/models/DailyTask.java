@@ -26,12 +26,11 @@ public class DailyTask extends Task {
     private DayOfWeekMark repeat;
     private Number everyX;
     private Number streak;
- //   @JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
+    //@JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
-    private JsonNode[] nextDue;
+    private String[] nextDue;
+    //private JsonNode[] nextDue;
     private Boolean yesterDaily;
-    private HistoryMark[] history1;
-
     private Number[] daysOfMonth;
     private Number[] weeksOfMonth;
     private Date startDate;
@@ -67,18 +66,5 @@ public class DailyTask extends Task {
         private Boolean s;
         private Boolean su;
     }
-    @Data
-    @ToString
-    @AllArgsConstructor
-    @RequiredArgsConstructor
-    @NoArgsConstructor
-    @Log4j2
-    @SuperBuilder
-    public static class HistoryMark {
-        @NonNull private Timestamp date;
-        private Float value;
-        private Boolean isDue;
-        private Boolean completed;
 
-    }
 }

@@ -2,6 +2,7 @@ package Temp;
 
 import api.ValidRequests;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import helper.MyDate;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -16,6 +17,7 @@ import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
 import requests.tasks.PostTask;
 
+import java.text.ParseException;
 import java.util.*;
 
 import static config.EnvConfig.PATH_TASK;
@@ -29,7 +31,7 @@ public class GetAllTasksTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("'post-get all - get one - delete task")
-    public void GetAllTest () {
+    public void GetAllTest () throws ParseException {
 
 
         //get all tasks
@@ -40,10 +42,13 @@ public class GetAllTasksTest {
         //get my task
         String taskId = "31692448-8c4c-4283-b54d-dfb532aac155";
         Task checkTask = GetTasks.getOne(taskId);
-        System.out.println(checkTask);
+        String s = checkTask.getNextDue()[0];
+        System.out.println(s);
+        System.out.println(MyDate.changeNextDueToDate(s));
+
         //get all tags
-        Task[] taskArrayNew = GetTasks.getAll();
-        System.out.println(taskArrayNew.length);
+        //Task[] taskArrayNew = GetTasks.getAll();
+        //System.out.println(taskArrayNew.length);
 
 /*        ValidatableResponse response = ValidRequests.get(PATH_TASK + "/" + taskId)
                 .statusCode(200)
