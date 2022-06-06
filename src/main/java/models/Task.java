@@ -50,8 +50,6 @@ public class Task implements Comparable<Task> {
     private DailyTask.DayOfWeekMark repeat;
     private Number everyX;
     private Number streak;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ", locale = "en_GB", timezone = "Moscow")
-    private Date[] nextDue;
     //private JsonNode[] nextDue;
     private Boolean yesterDaily;
  //   @JsonProperty("history")
@@ -68,6 +66,8 @@ public class Task implements Comparable<Task> {
     private HistoryItem[] history;
     // from Reward task
     private Number value;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ", locale = "en_GB", timezone = "Moscow")
+    private String[] nextDue;
 
 
 

@@ -42,9 +42,9 @@ public class GetAllTasksTest {
         //get my task
         String taskId = "31692448-8c4c-4283-b54d-dfb532aac155";
         Task checkTask = GetTasks.getOne(taskId);
-        Date s = checkTask.getNextDue()[0];
+        String s = checkTask.getNextDue()[0];
         System.out.println(s);
-        //System.out.println(MyDate.changeNextDueToDate(s));
+        System.out.println(MyDate.changeNextDueToDate(s));
 
         //get all tags
         //Task[] taskArrayNew = GetTasks.getAll();
