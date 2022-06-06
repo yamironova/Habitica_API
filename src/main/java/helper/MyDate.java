@@ -35,7 +35,7 @@ public class MyDate {
     public static Date changeNextDueToDate(String s) throws ParseException {
 
       //  Tue Jun 07 2022 00:00:00 GMT+0300
-        DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss ZZZZ", Locale.ENGLISH);
+        DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ", Locale.ENGLISH);
         return dateFormat.parse(s);
     }
     //public static final String FORMAT_HEURE_JSON_SERIALIZE_2 = new String("EEE dd MMM yyyy HH:mm:ss ZZZZ");
