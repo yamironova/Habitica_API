@@ -33,6 +33,7 @@ public class Task implements Comparable<Task> {
     private Number priority;
     private String[] reminders;
     private Boolean isDue;
+
     // for response
     private Challenge challenge;
     private Group group;
@@ -43,20 +44,9 @@ public class Task implements Comparable<Task> {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private String userId;
+
     // from Todo task
     private Date date;
-    // from Daily task
-    private String frequency;
-    private DailyTask.DayOfWeekMark repeat;
-    private Number everyX;
-    private Number streak;
-    //private JsonNode[] nextDue;
-    private Boolean yesterDaily;
- //   @JsonProperty("history")
-  //  private DailyTask.HistoryMark[] history1;
-    private Number[] daysOfMonth;
-    private Number[] weeksOfMonth;
-    private Date startDate;
     // from Habit task
     private Boolean up;
     private Boolean down;
@@ -64,9 +54,23 @@ public class Task implements Comparable<Task> {
     private Integer counterDown;
     @JsonProperty("history")
     private HistoryItem[] history;
+
     // from Reward task
     private Number value;
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ", locale = "en_GB", timezone = "Moscow")
+
+    // from Daily task
+    private String frequency;
+    private DailyTask.DayOfWeekMark repeat;
+    private Number everyX;
+    private Number streak;
+    //private JsonNode[] nextDue;
+    private Boolean yesterDaily;
+    //   @JsonProperty("history")
+    //  private DailyTask.HistoryMark[] history1;
+    private Number[] daysOfMonth;
+    private Number[] weeksOfMonth;
+    private Timestamp startDate;
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ", locale = "en_GB", timezone = "Moscow")
     private String[] nextDue;
 
 

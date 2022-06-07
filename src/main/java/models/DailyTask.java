@@ -27,13 +27,14 @@ public class DailyTask extends Task {
     private Number everyX;
     private Number streak;
     //@JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
- //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ")
-    private String[] nextDue;
+
     //private JsonNode[] nextDue;
     private Boolean yesterDaily;
     private Number[] daysOfMonth;
     private Number[] weeksOfMonth;
-    private Date startDate;
+    private Timestamp startDate;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEE MMM dd yyyy HH:mm:ss 'GMT'ZZZ")
+    private String[] nextDue;
 
 
     public DailyTask(String taskName) {
