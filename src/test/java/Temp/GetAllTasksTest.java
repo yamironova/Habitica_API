@@ -4,6 +4,7 @@ import helper.TaskToJSON;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import models.RewardTask;
 import models.Task;
 import models.ToDoTask;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,8 @@ public class GetAllTasksTest {
 
 
         //create task
-        ToDoTask myTask = new ToDoTask("ToDoJava Task");
+        RewardTask myTask = new RewardTask("JavaReward",10);
+        //ToDoTask myTask = new ToDoTask("ToDoJava Task");
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
