@@ -23,7 +23,7 @@ public class GetAllTasksTest {
 
 
         //create task
-        Task myTask = new ToDoTask("ToDoJava Task");
+        ToDoTask myTask = new ToDoTask("ToDoJava Task");
         // post Task
         Task responseTask = PostTask.postOne(myTask);
         myTask.setId(responseTask.getId());

@@ -31,12 +31,12 @@ public class PostTask {
                 .as(JSONToOneTask.class));
     }
 
-    public static Task postTagToOne(Task task, Tag tag) {
+    public static Task postTagToOne(String taskId, String tagId) {
 
         String requestBody = "";
 
         ValidatableResponse response =
-                ValidRequests.post(PATH_TASK + "/" + task.getId() + "/tags/" + tag.getId(), requestBody)
+                ValidRequests.post(PATH_TASK + "/" + taskId + "/tags/" + tagId, requestBody)
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .assertThat()

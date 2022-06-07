@@ -32,6 +32,7 @@ public class SmokeTaskWithTagTest {
 
         //get all tags
         Tag[] tagArrayNew = GetTags.getAll();
+
         // add tag to reference task
         String tagName = tagArrayNew[0].getName();
         System.out.println(tagName);
@@ -41,7 +42,7 @@ public class SmokeTaskWithTagTest {
         myTask.setTags(myTagsArray);
 
         //add tag to system task
-        responseTask = PostTask.postTagToOne(myTask, myTag);
+        responseTask = PostTask.postTagToOne(myTask.getId(), myTag.getId());
         System.out.println(responseTask);
 
         //get my task and tags
