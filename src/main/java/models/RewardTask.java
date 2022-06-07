@@ -25,12 +25,12 @@ public class RewardTask extends Task {
 
     public static RewardTask randomRewardTask() {
 
-        return new RewardTask(RandomStringUtils.random(10, true, false), (int) Math.random()*100);
+        return new RewardTask(RandomStringUtils.random(10, true, false), (int) (Math.random()*100));
     }
 
     public static RewardTask defaultRewardTask() {
 
-        return new RewardTask("RewardTask_name", 0);
+        return new RewardTask("RewardTask_name", 10);
     }
 
 }

@@ -21,7 +21,7 @@ public class SmokeTasksTest {
     public void smokeTaskTest() {
 
         //create task
-        Task myTask = new ToDoTask("TEXT" );
+        Task myTask = Task.defaultTask();
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());

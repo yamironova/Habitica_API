@@ -22,19 +22,19 @@ public class DiffTypeTasksTest {
     public void toDoTaskTest() {
 
         //create task
-        Task myTask = new ToDoTask("ToDoJavaTask" );
+        Task myTask = ToDoTask.randomToDoTask();
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
-        System.out.println(myTask.getId());
 
         //get my task
         Task checkTask = GetTasks.getOne(myTask.getId());
+        System.out.println("created task \"" + checkTask.getText() + "\" with id " + checkTask.getId());
+
 
         //get all tasks
         Task[] taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
-        System.out.println(taskArrayNew[taskArrayNew.length-1].getId());
         assertEquals(myTask.getText(), checkTask.getText());
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
@@ -54,19 +54,18 @@ public class DiffTypeTasksTest {
     public void rewardTaskTest() {
 
         //create task
-        RewardTask myTask = new RewardTask("JavaReward",10 );
+        RewardTask myTask = RewardTask.randomRewardTask();
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
-        System.out.println(myTask.getId());
 
         //get my task
         Task checkTask = GetTasks.getOne(myTask.getId());
+        System.out.println("created task \"" + checkTask.getText() + "\" with id " + checkTask.getId() + "and price=" + checkTask.getValue());
 
         //get all tasks
         Task[] taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
-        System.out.println(taskArrayNew[taskArrayNew.length-1].getId());
         assertEquals(myTask.getText(), checkTask.getText());
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
