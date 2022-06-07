@@ -56,6 +56,8 @@ public class TaskToJSON {
 
         issueData.put("text", task.getText());
         issueData.put("type", task.getType());
+        issueData.put("everyX", task.getEveryX());
+        issueData.put("frequency", task.getFrequency());
 
         return PostTask.postTaskRequest(issueData);
     }

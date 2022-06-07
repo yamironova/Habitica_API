@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.JsonNode;
+import io.cucumber.java.sl.In;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -22,9 +23,9 @@ import java.util.List;
 @SuperBuilder
 
 public class DailyTask extends Task {
-    private String frequency;
+    @NonNull private String frequency;
     private DayOfWeekMark repeat;
-    private Number everyX;
+    @NonNull private Number everyX;
     private Number streak;
     //@JsonFormat(pattern = "EEE MMM dd yyyy HH:mm:ss ZZZZ")
 
@@ -37,18 +38,21 @@ public class DailyTask extends Task {
     private String[] nextDue;
 
 
-    public DailyTask(String taskName) {
-      super("iD",taskName, "daily"); }
+    public DailyTask(String taskName, Integer frequency,  Number everyX) {
+      super("iD",taskName, "daily");
+      this.everyX = everyX;
+      this.frequency = getFrequency(frequency);
+    }
 
 
     public static DailyTask randomDailyTask() {
 
-        return new DailyTask(RandomStringUtils.random(10, true, false));
+        return new DailyTask(RandomStringUtils.random(10, true, false), 3,  (int) (Math.random()*6)+1);
     }
 
     public static DailyTask defaultDailyTask() {
 
-        return new DailyTask("DailyTask_name");
+        return new DailyTask("DailyTask_name", 1,1);
     }
 
     @Data
@@ -66,6 +70,17 @@ public class DailyTask extends Task {
         private Boolean f;
         private Boolean s;
         private Boolean su;
+    }
+
+    public static String getFrequency(Integer i) {
+        switch (i) {
+            case 2: return "weekly";
+            case 3: return "monthly";
+            case 4: return "yearly";
+            default: return "daily";
+
+
+        }
     }
 
 }

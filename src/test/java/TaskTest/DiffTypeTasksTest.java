@@ -4,10 +4,7 @@ import helper.TaskToJSON;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import models.HabitTask;
-import models.RewardTask;
-import models.Task;
-import models.ToDoTask;
+import models.*;
 import org.junit.jupiter.api.Test;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
@@ -101,6 +98,36 @@ public class DiffTypeTasksTest {
         // delete task
        Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
        assertTrue(deletingSuccess);
+
+        //check
+        taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
+
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("'post-get all - get one - delete Reward task")
+    public void dailyTaskTest() {
+
+        //create task
+        DailyTask myTask = DailyTask.randomDailyTask();
+        // post Task
+        Task responseTask = TaskToJSON.postOne(myTask);
+        myTask.setId(responseTask.getId());
+
+        //get my task
+        Task checkTask = GetTasks.getOne(myTask.getId());
+        System.out.println("created task \"" + checkTask.getText() + "\" with id " + checkTask.getId() + "and frequency=" + checkTask.getFrequency());
+
+        //get all tasks
+        Task[] taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
+        assertEquals(myTask.getText(), checkTask.getText());
+
+        // delete task
+        Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+        assertTrue(deletingSuccess);
 
         //check
         taskArrayNew = GetTasks.getAll();
