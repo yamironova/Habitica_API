@@ -5,6 +5,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import models.Task;
+import models.ToDoTask;
 import org.junit.jupiter.api.Test;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
@@ -15,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SmokeTasksTest {
 
     @Test
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.CRITICAL)
     @Description("'post-get all - get one - delete task")
     public void smokeTaskTest() {
 
         //create task
-        Task myTask = new Task("Id","TEXT", "todo" );
+        Task myTask = new ToDoTask("TEXT" );
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
@@ -33,6 +34,7 @@ public class SmokeTasksTest {
         Task[] taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
         System.out.println(taskArrayNew[taskArrayNew.length-1].getId());
+        //            ***For short version***
         //ArrayList<Task> taskArrayNew = GetTasks.getAll();
         //int n = taskArrayNew.size();
         //System.out.println(n);
