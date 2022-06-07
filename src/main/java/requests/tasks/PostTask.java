@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import models.Tag;
 import models.Task;
+import org.json.JSONObject;
 
 import static config.EnvConfig.PATH_TASK;
 import static config.EnvConfig.PATH_TASKS;
@@ -14,11 +15,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class PostTask {
 
-    public static Task postOne(Task task) {
 
-        String requestBody = TaskToJSON.generateJSONForTask(task);
-
-        ValidatableResponse response = ValidRequests.post(PATH_TASKS, requestBody)
+    public static Task postTaskRequest(JSONObject issueData) {
+        ValidatableResponse response = ValidRequests.post(PATH_TASKS, issueData.toString())
                 .statusCode(201)
                 .contentType(ContentType.JSON)
                 .assertThat()
@@ -29,7 +28,7 @@ public class PostTask {
                 .extract()
                 .body()
                 .as(JSONToOneTask.class));
-    }
+    };
 
     public static Task postTagToOne(String taskId, String tagId) {
 

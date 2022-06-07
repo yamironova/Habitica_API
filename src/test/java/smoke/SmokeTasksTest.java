@@ -1,16 +1,13 @@
 package smoke;
 
+import helper.TaskToJSON;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import models.Challenge;
 import models.Task;
 import org.junit.jupiter.api.Test;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
-import requests.tasks.PostTask;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,7 +22,7 @@ public class SmokeTasksTest {
         //create task
         Task myTask = new Task("Id","TEXT", "todo" );
         // post Task
-        Task responseTask = PostTask.postOne(myTask);
+        Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
         System.out.println(myTask.getId());
 
