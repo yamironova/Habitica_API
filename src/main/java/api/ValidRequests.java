@@ -1,23 +1,16 @@
 package api;
 
-import static config.EnvConfig.*;
-import static io.restassured.RestAssured.given;
-import static lombok.extern.flogger.Flogger.*;
-
+import config.EnvConfig;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.http.Cookie;
-import io.restassured.http.Cookies;
-
-import lombok.extern.flogger.Flogger;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import models.Tag;
-import lombok.*;
 import lombok.extern.log4j.Log4j2;
+
+import static config.EnvConfig.URL_BASE;
+import static config.EnvConfig.X_CLIENT;
+import static io.restassured.RestAssured.given;
 
 @Log4j2
 public class ValidRequests {
@@ -28,8 +21,8 @@ public class ValidRequests {
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri(URL_BASE)
             .addHeader("X-Client", X_CLIENT)
-            .addHeader("x-api-user", USER_ID)
-            .addHeader("x-api-key", API_KEY)
+            .addHeader("x-api-user", EnvConfig.getUser_Id())
+            .addHeader("x-api-key", EnvConfig.getAPI_key())
             .build();
 
     // simple valid get request
@@ -42,10 +35,10 @@ public class ValidRequests {
                 ;
 
         // lets check cookies and session ID
-        System.out.println(response.getCookies());
+        //System.out.println(response.getCookies());   // show Cookies
         String getSessionIdFromCookie = response.getCookies().get("connect:sess.sig") ;
         String getSessionFromCookie = response.getCookies().get("connect:sess") ;
-        System.out.println(getSessionFromCookie + "  " + getSessionIdFromCookie);
+        //System.out.println(getSessionFromCookie + "  " + getSessionIdFromCookie);   // show Cookies
 
         // how we can use this session ID
         //Response responseNew = given()
