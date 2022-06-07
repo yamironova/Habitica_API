@@ -44,6 +44,8 @@ public class TaskToJSON {
 
         issueData.put("text", task.getText());
         issueData.put("type", task.getType());
+        issueData.put("up", task.getUp());
+        issueData.put("down", task.getDown());
 
         return PostTask.postTaskRequest(issueData);
     }

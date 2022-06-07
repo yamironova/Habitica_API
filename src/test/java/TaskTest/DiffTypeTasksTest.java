@@ -4,6 +4,7 @@ import helper.TaskToJSON;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import models.HabitTask;
 import models.RewardTask;
 import models.Task;
 import models.ToDoTask;
@@ -22,7 +23,7 @@ public class DiffTypeTasksTest {
     public void toDoTaskTest() {
 
         //create task
-        Task myTask = ToDoTask.randomToDoTask();
+        ToDoTask myTask = ToDoTask.randomToDoTask();
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
@@ -36,15 +37,14 @@ public class DiffTypeTasksTest {
         Task[] taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
         assertEquals(myTask.getText(), checkTask.getText());
+
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+        assertTrue(deletingSuccess);
 
         //check
         taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
-
-        assertTrue(deletingSuccess);
-
 
     }
 
@@ -67,15 +67,44 @@ public class DiffTypeTasksTest {
         Task[] taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
         assertEquals(myTask.getText(), checkTask.getText());
+
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+        assertTrue(deletingSuccess);
 
         //check
         taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
 
-        assertTrue(deletingSuccess);
+    }
 
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("'post-get all - get one - delete To Do task")
+    public void habitTaskTest() {
+
+        //create task
+        HabitTask myTask = HabitTask.randomHabitTask();
+        // post Task
+        Task responseTask = TaskToJSON.postOne(myTask);
+        myTask.setId(responseTask.getId());
+
+        //get my task
+        Task checkTask = GetTasks.getOne(myTask.getId());
+        System.out.println("created task \"" + checkTask.getText() + "\" with id " + checkTask.getId());
+
+        //get all tasks
+        Task[] taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
+        assertEquals(myTask.getText(), checkTask.getText());
+
+        // delete task
+       Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+       assertTrue(deletingSuccess);
+
+        //check
+        taskArrayNew = GetTasks.getAll();
+        System.out.println(taskArrayNew.length);
 
     }
 }

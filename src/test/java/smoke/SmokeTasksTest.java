@@ -25,10 +25,10 @@ public class SmokeTasksTest {
         // post Task
         Task responseTask = TaskToJSON.postOne(myTask);
         myTask.setId(responseTask.getId());
-        System.out.println(myTask.getId());
 
         //get my task
         Task checkTask = GetTasks.getOne(myTask.getId());
+        System.out.println("created task \"" + checkTask.getText() + "\" with id " + checkTask.getId());
 
         //get all tasks
         Task[] taskArrayNew = GetTasks.getAll();
@@ -39,17 +39,17 @@ public class SmokeTasksTest {
         //int n = taskArrayNew.size();
         //System.out.println(n);
         //System.out.println(taskArrayNew.get(n-1).getId());
-
-
         assertEquals(myTask.getText(), checkTask.getText());
+
         // delete task
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
+        assertTrue(deletingSuccess);
 
         //check
         taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
 
-        assertTrue(deletingSuccess);
+
 
 
     }
