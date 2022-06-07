@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import models.Task;
+import models.ToDoTask;
 import org.junit.jupiter.api.Test;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
@@ -22,12 +23,13 @@ public class GetAllTasksTest {
 
 
         //create task
-        Task myTask = new Task("Id","TEXT", "todo" );
+        Task myTask = new ToDoTask("ToDoJava Task");
         // post Task
         Task responseTask = PostTask.postOne(myTask);
         myTask.setId(responseTask.getId());
         String taskId = myTask.getId();
         System.out.println(taskId );
+        System.out.println(myTask.getText());
 
 
         //get all tasks
