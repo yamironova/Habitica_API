@@ -1,7 +1,6 @@
 package helper;
 
-import models.Task;
-import models.ToDoTask;
+import models.*;
 import org.json.JSONObject;
 import requests.tasks.PostTask;
 
@@ -18,14 +17,44 @@ public class TaskToJSON {
         return PostTask.postTaskRequest(issueData);
     }
 
-    public static String generateJSONForTask(ToDoTask task) {
+    public static Task postOne(RewardTask task) {
 
         JSONObject issueData = new JSONObject();
 
         issueData.put("text", task.getText());
         issueData.put("type", task.getType());
 
-        return issueData.toString();
+        return PostTask.postTaskRequest(issueData);
+    }
+
+    public static Task postOne(HabitTask task) {
+
+        JSONObject issueData = new JSONObject();
+
+        issueData.put("text", task.getText());
+        issueData.put("type", task.getType());
+
+        return PostTask.postTaskRequest(issueData);
+    }
+
+    public static Task postOne(DailyTask task) {
+
+        JSONObject issueData = new JSONObject();
+
+        issueData.put("text", task.getText());
+        issueData.put("type", task.getType());
+
+        return PostTask.postTaskRequest(issueData);
+    }
+
+    public static Task postOne(ToDoTask task) {
+
+        JSONObject issueData = new JSONObject();
+
+        issueData.put("text", task.getText());
+        issueData.put("type", task.getType());
+
+        return PostTask.postTaskRequest(issueData);
     }
 
 }
