@@ -24,5 +24,20 @@ public class DeleteTag {
                 .body()
                 .path("success");
     }
+
+    // delete one absent tag
+    public static Boolean deleteOneAbsent(String tagId) {
+
+        ValidatableResponse response = ValidRequests.delete(PATH_TAG + "/" + tagId)
+                .statusCode(404)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("not-found.json"));
+
+        return response
+                .extract()
+                .body()
+                .path("success");
+    }
 }
 

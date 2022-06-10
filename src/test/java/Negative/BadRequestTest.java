@@ -68,13 +68,11 @@ public class BadRequestTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("delete tag with wrong id")
-    public void dailyTaskTest() {
+    public void deleteTagWithWrongIDTest() {
 
-        //create tag
-        Tag myTag = new Tag("TEXT", "JavaTag" );
         // delete tag
-        Boolean deletingSuccess = DeleteTag.deleteTag(myTag.getId());
-        assertTrue(deletingSuccess);
+        Boolean deletingSuccess = DeleteTag.deleteOneAbsent(WRONG_ITEM_ID);
+        assertTrue(!deletingSuccess);
 
 
     }
