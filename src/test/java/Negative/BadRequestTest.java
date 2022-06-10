@@ -14,8 +14,7 @@ import requests.tags.PostTag;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
 
-import static config.EnvConfig.PATH_TAG;
-import static config.EnvConfig.WRONG_TOKEN_ERROR;
+import static config.EnvConfig.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,7 +32,7 @@ public class BadRequestTest {
                         .statusCode(401)
                         .contentType(ContentType.JSON)
                         .assertThat()
-                        .body(matchesJsonSchemaInClasspath("no-token-schema.json"))
+                        .body(matchesJsonSchemaInClasspath("wrong-API-key-response.json"))
                         .extract()
                         .jsonPath()
                         .getString("error");
@@ -45,11 +44,11 @@ public class BadRequestTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("'post tag with wrong request")
-    public void rewardTaskTest() {
+    public void postWrongTagTest() {
 
         //create tag
         Tag myTag = new Tag("TEXT", "JavaTag" );
-        // post Tag
+        // post Tag with wrong API key
         Tag responseTag = PostTag.postOne(myTag);
         myTag.setId(responseTag.getId());
 
@@ -58,12 +57,11 @@ public class BadRequestTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Description("get tag with wrong id")
-    public void habitTaskTest() {
+    public void getTagWithWrongIDTest() {
 
-        //create tag
-        Tag myTag = new Tag("TEXT", "JavaTag" );
-        //get tag
-        Tag checkTag = GetTags.getOne(myTag.getId());
+        //get tag with wrong id
+        Boolean result = GetTags.getOneAbsent(WRONG_ITEM_ID);
+        assertTrue(!result);
 
     }
 
