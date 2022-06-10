@@ -1,0 +1,56 @@
+{
+  "examples": [
+    {
+      "success": false,
+      "error": "BadRequest",
+      "message": "User validation failed",
+      "errors":[{"message":"Path `name` is required.","path":"name"}]
+    }
+  ],
+  "required": [
+    "success",
+    "error",
+    "message",
+    "errors"
+  ],
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "default": false
+    },
+    "error": {
+      "type": "string",
+      "default": ""
+    },
+    "message": {
+      "type": "string",
+      "default": ""
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$id": "/properties/notifications/items",
+        "type": "object",
+        "examples": [
+          {
+            "message": "Path `name` is required.",
+            "path": "name"
+          }
+        ],
+        "required": [
+          "message",
+          "path"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      }
+    }
+
+  }
+}

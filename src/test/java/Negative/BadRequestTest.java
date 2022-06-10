@@ -26,7 +26,7 @@ public class BadRequestTest {
     @Description("request with invalid API key")
     public void invalidAPITest() {
 
-        //get all tags
+        //get all tags with invalid API key
         String wrongAPIError =
                 NonValidRequests.wrongAPIKeyGet(PATH_TAG)
                         .statusCode(401)
@@ -46,11 +46,10 @@ public class BadRequestTest {
     @Description("'post tag with wrong request")
     public void postWrongTagTest() {
 
-        //create tag
-        Tag myTag = new Tag("TEXT", "JavaTag" );
-        // post Tag with wrong API key
-        Tag responseTag = PostTag.postOne(myTag);
-        myTag.setId(responseTag.getId());
+        String requestBody = "";
+        // post Tag with empty body
+        String messageError = PostTag.postWrongRequest(requestBody);
+        assertEquals(EMPTY_REQUEST_TAG_ERROR, messageError);
 
     }
 
@@ -73,7 +72,6 @@ public class BadRequestTest {
         // delete tag
         Boolean deletingSuccess = DeleteTag.deleteOneAbsent(WRONG_ITEM_ID);
         assertTrue(!deletingSuccess);
-
 
     }
 }

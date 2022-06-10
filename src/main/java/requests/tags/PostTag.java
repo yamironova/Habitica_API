@@ -8,11 +8,12 @@ import io.restassured.response.ValidatableResponse;
 import models.Tag;
 
 import static config.EnvConfig.PATH_TAG;
+import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PostTag {
 
-    // valid post with separator request
+    // valid post one tag
     public static Tag postOne(Tag tag) {
 
         String requestBody = TagToJSON.generateJSONForTag(tag);
@@ -27,5 +28,21 @@ public class PostTag {
                 .extract()
                 .body()
                 .as(JSONToOneTag.class));
+    }
+
+    // invalid post request
+    public static String postWrongRequest(String requestBody) {
+
+        ValidatableResponse response = ValidRequests.post(PATH_TAG, requestBody)
+                .statusCode(400)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("wrong-request-format.json"));
+
+        return response.
+                extract().
+                jsonPath().
+                getString("errors[0].message");
+
     }
 }

@@ -1,1 +1,1 @@
-[INFO ] 2022-06-10 15:56:52.711 - DELETE request to /api/v4/tags/00000000-0000-0000-0000-000000000000 has code response 404 has code response {"success":false,"error":"NotFound","message":"No tag item was found with given id."}
+[INFO ] 2022-06-10 16:22:39.044 - POST request with body  has code response 400 and response body {"success":false,"error":"BadRequest","message":"User validation failed","errors":[{"message":"Path `name` is required.","path":"name"}]}

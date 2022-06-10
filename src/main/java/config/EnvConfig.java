@@ -16,7 +16,7 @@ public class EnvConfig {
     public static final String WRONG_API_KEY = "00000000-0000-0000-0000-000000000000";
     public static final String WRONG_ITEM_ID = "00000000-0000-0000-0000-000000000000";
     public static final String WRONG_TOKEN_ERROR = "NotAuthorized";
-
+    public static final String EMPTY_REQUEST_TAG_ERROR = "Path `name` is required.";
 
     // get cred from file
     public EnvConfig() throws FileNotFoundException {
