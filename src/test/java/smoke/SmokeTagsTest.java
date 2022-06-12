@@ -9,6 +9,7 @@ import requests.tags.DeleteTag;
 import requests.tags.GetTags;
 import requests.tags.PostTag;
 
+import static config.EnvConfig.WRONG_ITEM_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,11 +35,15 @@ public class SmokeTagsTest {
         // delete tag
         Boolean deletingSuccess = DeleteTag.deleteTag(myTag.getId());
 
-        //check
+        //check left tag list
         tagArrayNew = GetTags.getAll();
         System.out.println(tagArrayNew.length);
-
         assertTrue(deletingSuccess);
+
+        //check tag were deleted
+        Boolean result = GetTags.getOneAbsent(myTag.getId());
+        assertTrue(!result);
+
 
 
     }
