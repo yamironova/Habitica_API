@@ -39,10 +39,10 @@ public class PostTag {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("wrong-request-format.json"));
 
-        return response.
-                extract().
-                jsonPath().
-                getString("errors[0].message");
+        return response
+                .extract()
+                .jsonPath()
+                .getString("errors[0].message");
 
     }
 }

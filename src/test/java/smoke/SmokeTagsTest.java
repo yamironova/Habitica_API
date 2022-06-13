@@ -34,11 +34,11 @@ public class SmokeTagsTest {
         assertEquals(myTag, checkTag);
         // delete tag
         Boolean deletingSuccess = DeleteTag.deleteTag(myTag.getId());
+        assertTrue(deletingSuccess);
 
         //check left tag list
         tagArrayNew = GetTags.getAll();
         System.out.println(tagArrayNew.length);
-        assertTrue(deletingSuccess);
 
         //check tag were deleted
         Boolean result = GetTags.getOneAbsent(myTag.getId());

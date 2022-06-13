@@ -13,6 +13,7 @@ import requests.tags.GetTags;
 import requests.tags.PostTag;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
+import requests.tasks.PostTask;
 
 import static config.EnvConfig.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -69,8 +70,42 @@ public class BadRequestTest {
     @Description("delete tag with wrong id")
     public void deleteTagWithWrongIDTest() {
 
-        // delete tag
+        // delete tag with wrong id
         Boolean deletingSuccess = DeleteTag.deleteOneAbsent(WRONG_ITEM_ID);
+        assertTrue(!deletingSuccess);
+
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("'post task with wrong request")
+    public void postWrongTaskTest() {
+
+        String requestBody = "";
+        // post Task with empty body
+        Boolean result = PostTask.postWrongRequest(requestBody);
+        assertTrue(!result);
+
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("get task with wrong id")
+    public void getTaskWithWrongIDTest() {
+
+        //get task with wrong id
+        Boolean result = GetTasks.getOneAbsent(WRONG_ITEM_ID);
+        assertTrue(!result);
+
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("delete task with wrong id")
+    public void deleteTaskWithWrongIDTest() {
+
+        // delete task with wrong id
+        Boolean deletingSuccess = DeleteTask.deleteOneAbsent(WRONG_ITEM_ID);
         assertTrue(!deletingSuccess);
 
     }

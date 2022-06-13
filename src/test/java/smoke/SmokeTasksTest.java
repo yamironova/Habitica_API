@@ -7,6 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import models.Task;
 import models.ToDoTask;
 import org.junit.jupiter.api.Test;
+import requests.tags.GetTags;
 import requests.tasks.DeleteTask;
 import requests.tasks.GetTasks;
 
@@ -45,11 +46,13 @@ public class SmokeTasksTest {
         Boolean deletingSuccess = DeleteTask.deleteTask(myTask.getId());
         assertTrue(deletingSuccess);
 
-        //check
+        //check left tag list
         taskArrayNew = GetTasks.getAll();
         System.out.println(taskArrayNew.length);
 
-
+        //check task were deleted
+        Boolean result = GetTasks.getOneAbsent(myTask.getId());
+        assertTrue(!result);
 
 
     }

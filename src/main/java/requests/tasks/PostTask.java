@@ -9,8 +9,7 @@ import models.Tag;
 import models.Task;
 import org.json.JSONObject;
 
-import static config.EnvConfig.PATH_TASK;
-import static config.EnvConfig.PATH_TASKS;
+import static config.EnvConfig.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PostTask {
@@ -46,6 +45,22 @@ public class PostTask {
                 .extract()
                 .body()
                 .as(JSONToOneTask.class));
+    }
+
+    // invalid post request
+    public static Boolean postWrongRequest(String requestBody) {
+
+        ValidatableResponse response = ValidRequests.post(PATH_TASK, requestBody)
+                .statusCode(404)
+                .contentType(ContentType.JSON)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("not-found.json"));
+
+        return response
+                .extract()
+                .body()
+                .path("success");
+
     }
 
 }
